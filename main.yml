@@ -17,12 +17,14 @@
     - ufw
 
 - hosts: mongo
+  become: true
   gather_facts: no
   roles:
     - role: mongodb
       when: "'mongo_master' in group_names"
 
 - hosts: mongo
+  become: true
   gather_facts: no
   roles:
     - role: mongodb
