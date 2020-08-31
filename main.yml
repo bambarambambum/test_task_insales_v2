@@ -9,6 +9,10 @@
       apt:
         update_cache: yes
         cache_valid_time: 3600
+    - name: Add an apt signing key
+      apt_key:
+        url: https://www.mongodb.org/static/pgp/server-4.2.asc
+        state: present
   roles:
     - ufw
 
