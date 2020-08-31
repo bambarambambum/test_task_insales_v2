@@ -3,13 +3,12 @@
 mongodb_replication_replset: rp0                  # Enable replication <setname>[/<optionalseedhostlist>]
 mongodb_replication_replindexprefetch: "all"      # specify index prefetching behavior (if secondary) [none|_id_only|all]
 mongodb_replication_oplogsize: 1024               # specifies a maximum size in megabytes for the replication operation log
-mongodb_package: mongodb
-mongodb_version: "3.6"
+mongodb_package: mongodb-org
+mongodb_version: "4.2"
 mongodb_security_authorization: "enabled"
 mongodb_set_parameters: { "enableLocalhostAuthBypass": "true", "authenticationMechanisms": "SCRAM-SHA-1,MONGODB-CR" }
 mongodb_user_admin_name: siteUserAdmin
 mongodb_user_admin_password: B4sDAyjgXFrgsBUxyNXCvach
-mongodb_net_bindip: 127.0.0.1
 mongodb_login_host: "{{ hostvars[groups['mongo_master'][0]].ansible_default_ipv4.address }}"
 
 mongodb_users:
@@ -21,12 +20,10 @@ mongodb_users:
   }
 
 ufw_rules:
-  - { port: 22, rule: allow, from_ip: '51.15.60.8', comment: 'Allow to ssh from our ip1' }
-  - { port: 22, rule: allow, from_ip: '94.159.45.158', comment: 'Allow to ssh from our ip2' }
-  - { port: 22, rule: allow, from_ip: '51.15.60.8', comment: 'Allow to ssh from our ip3' }
-  - { port: 27017, rule: allow, from_ip: "{{ hostvars[groups['mongo'][0]].ansible_eth0.ipv4.address }}", comment: 'Allow to mongo from mongo1' }
-  - { port: 27017, rule: allow, from_ip: "{{ hostvars[groups['mongo'][1]].ansible_eth0.ipv4.address }}", comment: 'Allow to mongo from mongo2' }
-  - { port: 27017, rule: allow, from_ip: "{{ hostvars[groups['mongo'][2]].ansible_eth0.ipv4.address }}", comment: 'Allow to mongo from mongo3' }
+  - { port: 22, rule: allow, from_ip: '176.193.58.160', comment: 'Allow to ssh from our ip' }
+  - { port: 27017, rule: allow, from_ip: "{{ hostvars[groups['mongo'][0]].ansible_ens4.ipv4.address }}", comment: 'Allow to mongo from mongo1' }
+  - { port: 27017, rule: allow, from_ip: "{{ hostvars[groups['mongo'][1]].ansible_ens4.ipv4.address }}", comment: 'Allow to mongo from mongo2' }
+  - { port: 27017, rule: allow, from_ip: "{{ hostvars[groups['mongo'][2]].ansible_ens4.ipv4.address }}", comment: 'Allow to mongo from mongo3' }
   - { from_ip: '127.0.0.1/8', comment: 'Allow localhost' }
 
 ufw_default_input_policy: DROP
