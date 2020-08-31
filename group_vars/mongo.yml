@@ -6,7 +6,7 @@ mongodb_replication_oplogsize: 1024               # specifies a maximum size in 
 mongodb_package: mongodb-org
 mongodb_version: "4.2"
 mongodb_security_authorization: "enabled"
-mongodb_set_parameters: { "enableLocalhostAuthBypass": "true", "authenticationMechanisms": "SCRAM-SHA-1,MONGODB-CR" }
+mongodb_set_parameters: { "enableLocalhostAuthBypass": "true", "authenticationMechanisms": "SCRAM-SHA-1" }
 mongodb_user_admin_name: siteUserAdmin
 mongodb_user_admin_password: B4sDAyjgXFrgsBUxyNXCvach
 mongodb_login_host: "{{ hostvars[groups['mongo_master'][0]].ansible_default_ipv4.address }}"
