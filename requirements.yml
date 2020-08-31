@@ -1,11 +1,7 @@
-- name: digitalocean
-  src: jasonheecs.digitalocean
-  version: 1.2.0
-
 - name: mongodb
   src: undergreen.mongodb
-  version: v2.4.4
+  version: v2.6.1
 
 - name: ufw
   src: weareinteractive.ufw
-  version: 1.9.0
+  version: 1.10.0
