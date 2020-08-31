@@ -1,30 +1,25 @@
 ---
 
 - hosts: all
-  become: false
-  gather_facts: false
+  become: true
   pre_tasks:
-    - name: Bootsrap Python2 for Ansible
-      raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
-      register: output
-      changed_when: output.stdout != ""
+    - name: Bootstrap Python2 for Ansible
+      raw: test -e /usr/bin/python || (apt -qq update && apt install -qq python-minimal)
     - name: Update apt cache
       apt:
         update_cache: yes
         cache_valid_time: 3600
-    - name: Gathering Facts
-      setup:
   roles:
     - ufw
 
 - hosts: mongo
-  gather_facts: yes
+  gather_facts: no
   roles:
     - role: mongodb
       when: "'mongo_master' in group_names"
 
 - hosts: mongo
-  gather_facts: yes
+  gather_facts: no
   roles:
     - role: mongodb
       when: "'mongo_replicas' in group_names"
