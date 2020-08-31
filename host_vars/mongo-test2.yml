@@ -3,5 +3,4 @@
 mongodb_replication_params:
   - { host_name: "{{ hostvars[inventory_hostname].ansible_default_ipv4.address }}" }
 
-  mongodb_net_bindip: "{{ hostvars[inventory_hostname].ansible_default_ipv4.address }}"
-  
+mongodb_net_bindip: "{{ hostvars[inventory_hostname].ansible_default_ipv4.address }}"
